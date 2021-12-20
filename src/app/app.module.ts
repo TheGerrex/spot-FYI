@@ -10,10 +10,12 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { ROUTES } from './app.routes';
 import {HttpClientModule } from "@angular/common/http";
 import { SpotifyService } from './services/spotify.service';
+import {AuthGuardService} from './services/auth-guard.service';
 import { NoimagePipe } from './pipes/noimage.pipe';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { DomseguroPipe } from './pipes/domseguro.pipe';
+import { AccessTokenComponent } from './components/access-token/access-token.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { DomseguroPipe } from './pipes/domseguro.pipe';
     NoimagePipe,
     TarjetasComponent,
     LoadingComponent,
-    DomseguroPipe
+    DomseguroPipe,
+    AccessTokenComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { DomseguroPipe } from './pipes/domseguro.pipe';
    
   ],
   providers: [
-    SpotifyService
+    SpotifyService, AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

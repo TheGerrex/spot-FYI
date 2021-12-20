@@ -6,20 +6,63 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SpotifyService {
+  public credentials = {
 
-  constructor( private http: HttpClient) { 
-    console.log("Spotify")
+    clientId: 'c412424ad8c2474c86370c9b52b4c640',
+    clientSecret: 'd2f0d0fb908647afa4a8223b433d119d',
+    accessToken: ''
+
+  };
+
+  public poolURlS = {
+
+    authorize: 'https://accounts.spotify.com/es-ES/authorize?client_id=' +
+      this.credentials.clientId + '&response_type=token' +
+      '&redirect_uri=' + encodeURIComponent('http://localhost:4200/callback') +
+      '&expires_in=3600',
+    refreshAccessToken: 'https://accounts.spotify.com/api/token'
+
+
+  };
+  constructor( private _http: HttpClient) { 
+    this.upDateToken()
   }
 
-  getQuery(query: string) {
-    const url = `https://api.spotify.com/v1/${query}`;
-
-    const headers = new HttpHeaders({
-      "Authorization": "Bearer BQAHqLWTfApNThRL7buqn7yf_I8-ikGLPly2eKELLvM5lJMeyb_SnCvLxU5n684AC3A3YJFur63QiKLqlN8"
-    });
-    
-    return this.http.get(url, {headers})
+  upDateToken(){
+    this.credentials.accessToken = sessionStorage.getItem('token') || '';
   }
+
+  getQuery(query: string){
+
+    const URL = `https://api.spotify.com/v1/${query}`;
+    const HEADER = {headers: new HttpHeaders({'Authorization': 'Bearer ' + this.credentials.accessToken})};
+
+    return this._http.get(URL, HEADER);
+
+  }
+
+  checkTokenSpoLogin() {
+
+    this.checkTokenSpo() || (sessionStorage.setItem('refererURL', location.href), window.location.href = this.poolURlS.authorize);
+
+  }
+
+  checkTokenSpo() {
+
+    return !!this.credentials.accessToken;
+
+  }
+
+  tokenRefreshURL() {
+
+    this.checkTokenSpo() && alert('Expiro la sesión');
+
+    this.credentials.accessToken = '';
+    sessionStorage.removeItem('token');
+    this.checkTokenSpoLogin();
+
+  }
+  
 
   getNewReleases() {
     
