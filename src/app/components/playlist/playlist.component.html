@@ -1,0 +1,47 @@
+<div class="container">
+    <app-loading *ngIf="loadingPlaylist"></app-loading>
+    <div *ngIf="!loadingPlaylist" class="row animated fadeIn pt-5">
+        <div class="col-4">
+            <div class="artist-banner">
+                <img [src]="playlist.images | noimage" class="artist-banner-image">
+            </div>
+        </div>
+        <div class="col align-self-end">
+            <h1>{{playlist.name}} <span class="follower-count">{{playlist.followers.total | number}} seguidores</span></h1>
+            <p>{{playlist.owner.display_name}}</p>
+            <p>
+                <a [href]="playlist.external_urls.spotify" target="_blank">
+                Ve a la pagina de la playlist
+            </a>
+            </p>
+        </div>
+        <div class="col-2 align-self-top">
+            <button routerLink="/search" class="btn btn-outline-danger">
+            Atrás
+        </button>
+        </div>
+    </div>
+    <div class="row mt-5" *ngIf="!loadingPlaylist">
+        <div class="col">
+            <table class="table table-borderless text-white align-middle">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Canción</th>
+                        <th>Vista Previa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let track of playlist.tracks.items">
+                        <td><img [src]="track.track.album.images | noimage" class="img-thumb"></td>
+
+                        <td>{{track.track.name}}</td>
+                        <td>
+                            <iframe [src]="track.track.id | domseguro" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

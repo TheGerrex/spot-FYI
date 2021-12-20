@@ -1,30 +1,28 @@
-<!-- <ul>
-    <li *ngFor="let pais of paises">
-        {{ pais.name}} - {{pais.population | number}}
-    </li>
-</ul> -->
-
-
-
-<!-- <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div *ngFor="let cancion of nuevaMusica" class="col">
-        <div class="card bg-dark">
-            <img [src]="cancion.images[0].url" class="card-img" alt="...">
-            <div class="card-img-overlay">
-                <div class="alert alert-light p-1">
-                    <div class="px-2">
-                        <h1 class="card-title">{{cancion.name}}</h1>
-                        <span *ngFor="let artista of cancion.artists" class="card-text badge rounded-pill bg-dark text-white">{{artista.name}}</span>
-                    </div>
+<section class="hero-banner">
+    <div class="wrapper">
+        <div class="gradient-black">
+            <div class="hero-message">
+                <div class="hero-message-container">
+                    <h1>La <span>musica</span> nos une a todos</h1>
+                    <h4>Encuentra tu musica favorita y revive tus mejores momentos a través de ella.</h4>
                 </div>
             </div>
         </div>
+        <video autoplay muted loop id="hero-banner-video" poster="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80">
+            <source src="../../../assets/videos/edm_concert.mp4" type="video/mp4">
+        </video>
     </div>
-</div> -->
-
+</section>
 <app-loading *ngIf="loading"></app-loading>
 <div *ngIf="error" class="alert alert-danger animated fadeIn">
     <h3>Error</h3>
     <p>{{mensajeError}}</p>
 </div>
-<app-tarjetas [items]="nuevaMusica"></app-tarjetas>
+<div class="container pb-5">
+    <div class="card-container-new-releases">
+        <h1 class="py-5"><u>Nuevos Lanzamientos</u></h1>
+        <app-tarjetas [items]="nuevaMusica"></app-tarjetas>
+        <h1 class="py-5"><u>Playlists mas populares</u></h1>
+        <app-playlist-card [items]="nuevaPlaylists"></app-playlist-card>
+    </div>
+</div>

@@ -65,10 +65,13 @@ export class SpotifyService {
   
 
   getNewReleases() {
-    
     return this.getQuery("browse/new-releases")
       .pipe(map( (data: any) => data.albums.items));
-        
+  }
+
+  getFeaturedPlaylists() {
+    return this.getQuery(`browse/featured-playlists`)
+      .pipe(map( (data: any) => data.playlists.items));
   }
 
   getArtistas(termino: string) {
@@ -84,6 +87,10 @@ export class SpotifyService {
     //     }));
   }
 
+  getPlaylist(id: string) {
+    return this.getQuery(`playlists/${id}`)
+  }
+
   getArtista(id: string) {
     return this.getQuery(`artists/${id}`)
   }
@@ -94,5 +101,14 @@ export class SpotifyService {
         return data["tracks"];
       }));
   }
+
+  getTopPlaylistTracks(id: string) {
+    return this.getQuery(`playlists/${id}/tracks&limit=15`)
+      .pipe(map( (data: any) => {
+        return data["tracks"];
+      }));
+  }
+
+ 
   
 }

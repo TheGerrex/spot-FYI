@@ -1,44 +1,47 @@
-<app-loading *ngIf="loadingArtist"></app-loading>
-<div *ngIf="!loadingArtist" class="row animated fadeIn">
-    <div class="col-2">
-        <img [src]="artista.images | noimage" class="img-thumbnail img-circle">
-    </div>
-    <div class="col">
-        <h3>{{artista.name}}</h3>
-        <p>
-            <a [href]="artista.external_urls.spotify" target="_blank">
-                Ir a la pagina del artista
+<div class="container">
+    <app-loading *ngIf="loadingArtist"></app-loading>
+    <div *ngIf="!loadingArtist" class="row animated fadeIn pt-5">
+        <div class="col-4">
+            <div class="artist-banner">
+                <img [src]="artista.images | noimage" class="artist-banner-image">
+            </div>
+        </div>
+        <div class="col align-self-end">
+            <h1>{{artista.name}} <span class="follower-count">{{artista.followers.total | number}} seguidores</span></h1>
+            <p>
+                <a [href]="artista.external_urls.spotify" target="_blank">
+                Ve a la pagina del artista
             </a>
-        </p>
-    </div>
-    <div class="col-4 text-right">
-        <button routerLink="/search" class="btn btn-outline-secondary">
-            Regresar
+            </p>
+        </div>
+        <div class="col-2 align-self-top">
+            <button routerLink="/search" class="btn btn-outline-danger">
+            Atrás
         </button>
+        </div>
     </div>
-</div>
-
-<div class="row mt-5" *ngIf="!loadingArtist">
-    <div class="col">
-        <table class="table table-borderless text-white align-middle">
-            <thead>
-                <tr>
-                    <th>Foto</th>
-                    <th>Album</th>
-                    <th>Canción</th>
-                    <th>Vista Previa</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let track of topTracks">
-                    <td><img [src]="track.album.images | noimage" class="img-thumb"></td>
-                    <td>{{track.album.name}}</td>
-                    <td>{{track.name}}</td>
-                    <td>
-                        <iframe [src]="track.id | domseguro" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row mt-5" *ngIf="!loadingArtist">
+        <div class="col">
+            <table class="table table-borderless text-white align-middle">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Album</th>
+                        <th>Canción</th>
+                        <th>Vista Previa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let track of topTracks">
+                        <td><img [src]="track.album.images | noimage" class="img-thumb"></td>
+                        <td>{{track.album.name}}</td>
+                        <td>{{track.name}}</td>
+                        <td>
+                            <iframe [src]="track.id | domseguro" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

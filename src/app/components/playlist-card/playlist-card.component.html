@@ -1,0 +1,7 @@
+<div class="row row-cols-1 row-cols-md-4 g-4" id="cards-component">
+    <div *ngFor="let item of items" class="col">
+        <div (click)="verPlaylist( item )" class="card animated fadeIn puntero" style="border: none;">
+            <img [src]="item.images | noimage" class="card-img-top" alt="...">
+        </div>
+    </div>
+</div>

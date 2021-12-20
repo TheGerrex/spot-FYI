@@ -1,0 +1,11 @@
+.card-body {
+    min-height: 100px;
+}
+
+.card {
+    transition: all .5s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(90%);
+}

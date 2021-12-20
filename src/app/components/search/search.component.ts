@@ -4,8 +4,7 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styles: [
-  ]
+  styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
 
@@ -22,5 +21,7 @@ export class SearchComponent {
         this.loading = false
       })
   };
+  
+  
 
 }

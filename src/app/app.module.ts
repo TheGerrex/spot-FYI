@@ -16,6 +16,8 @@ import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { DomseguroPipe } from './pipes/domseguro.pipe';
 import { AccessTokenComponent } from './components/access-token/access-token.component';
+import { PlaylistCardComponent } from './components/playlist-card/playlist-card.component';
+import { PlaylistComponent } from './components/playlist/playlist.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { AccessTokenComponent } from './components/access-token/access-token.com
     TarjetasComponent,
     LoadingComponent,
     DomseguroPipe,
-    AccessTokenComponent
+    AccessTokenComponent,
+    PlaylistCardComponent,
+    PlaylistComponent
   ],
   imports: [
     BrowserModule,

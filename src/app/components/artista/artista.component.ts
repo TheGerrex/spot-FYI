@@ -4,8 +4,7 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 @Component({
   selector: 'app-artista',
   templateUrl: './artista.component.html',
-  styles: [
-  ]
+  styleUrls: ['./artista.component.scss']
 })
 export class ArtistaComponent implements OnInit {
   artista: any = {};
